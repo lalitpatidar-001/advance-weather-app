@@ -20,21 +20,6 @@ const CityWeather: FC<CityWeatherProps> = ({ }) => {
     const { unit }:UnitSliceProps  = useSelector((state: RootState) => state.Unit);
     const dispatch: AppDispatch = useDispatch();
 
-
-    // useEffect(() => {
-    //     async function getCityWeather() {
-    //         console.log("cityyyy", typeof city)
-    //         try {
-    //             const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${city?.coordinates.lat}&lon=${city?.coordinates.lon}&appid=935e5b58051c5a1586837d206997c736`);
-    //             console.log(response)
-    //             dispatch(addForecastData({data:response.data}))
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     getCityWeather();
-    // }, [city]);
-
     useEffect(() => {
         async function getCityForecast() {
             console.log("cityyyy", typeof city)

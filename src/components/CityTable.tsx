@@ -39,7 +39,7 @@ const CityTable: FC<Props> = () => {
 
     return (
         <>
-        <div className="bg-[#444444] px-2 rounded-xl mt-4 h-[calc(100vh-150px)] overflow-y-scroll ">
+        <div style={{height:"calc(100svh - 150px)"}} className="bg-[#444444] px-2 rounded-xl mt-4  overflow-y-scroll ">
 
             <table className="w-full border border-black text-white h-[calc(100vh-200px)] overflow-y-scroll  ">
                 <tr className="border-2 border-black text-green-600 text-xl py-1 sticky bg-[#444444] top-0">

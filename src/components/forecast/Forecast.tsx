@@ -8,6 +8,7 @@ import { ForecastListProps, ForecastState } from "@/redux/slices/ForecastSlice";
 import formatDate from "@/utils/formateDate";
 import { addCurrentHourlyForecast } from "@/redux/slices/CurrentHourlyForecast";
 import tempratureConvert from "@/utils/tempratureConveret";
+import Loader from "../Loader";
 
 interface ForecastProps {
 
@@ -17,6 +18,7 @@ interface currentForecastArrayProps extends ForecastListProps {
 
 }
 const Forecast: FC<ForecastProps> = () => {
+    const [loading ,setLoading] = useState<boolean>(false)
     const { type, postfix } = useSelector((state: RootState) => state.Unit.unit)
     const { list: forecastData } = useSelector((state: RootState) => state.Forecast.forecastData);
     const [fiveDayForecast, setFiveDayForeCast] = useState<ForecastListProps[] | []>([]);
@@ -65,8 +67,10 @@ const Forecast: FC<ForecastProps> = () => {
         console.log("HourlyForecastArray", HourlyForecastArray)
     }
     useEffect(() => {
+        setLoading(true);
         getFiveDayForecastData();
         createHourlyForecastArray();
+        setLoading(false);
     }, []);
 
     const handleClickDayForecast = (index: number,) => {
@@ -76,11 +80,12 @@ const Forecast: FC<ForecastProps> = () => {
     return (
         <div className="flex-[1]   w-full max-w-[300px] h-fit  shadow-sm drop-shadow-md shadow-black  rounded-2xl  p-2">
             <h1 className="text-white font-bold text-xl text-center">5 Days Forecast:</h1>
+                {loading?<Loader/>:
             <div className="flex flex-col gap-1 w-full">
-                {
+               ( {
                     fiveDayForecast?.map((day, index) => (
                         <div onClick={() => handleClickDayForecast(index)} key={index} className={`${selectedDayIndex === index ? "bg-blue-400" : "hover:bg-gray-600"} flex h-[60px] gap-2 items-center cursor-pointer  rounded-lg`}>
-                            <Image src={OPEN__WEATHER_URL + day.weather[0].icon + "@2x.png"} width={60} height={60} alt="forecast_image" />
+                            {day.weather[0].icon && <Image src={OPEN__WEATHER_URL + day.weather[0].icon + "@2x.png"} width={60} height={60} alt="forecast_image" />}
                             <div className="flex text-white font-medium">
                                 <span >{tempratureConvert(type, day.main.temp)}</span>
                                 <span className="self-start -mt-2 text-sm">o</span>
@@ -89,8 +94,9 @@ const Forecast: FC<ForecastProps> = () => {
                             <span className="text-white">{formatDate(day.dt_txt)}</span>
                         </div>
                     ))
-                }
+                })
             </div>
+            }
         </div>
     );
 }
