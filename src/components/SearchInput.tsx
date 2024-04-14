@@ -57,8 +57,8 @@ const SearchInput: FC<SearchInputProps> = () => {
                 <div className="flex flex-col gap-2  absolute right-10 z-50 max-h-[40vh] overflow-y-auto bg-[#444444] ">
                     {
                         cities?.map((city:City,index:number) => (
-                            <Link  href={`/weather`}>
-                            <span key={index} onClick={()=>handleClickCity({
+                            <Link  key={index} href={`/weather`}>
+                            <span onClick={()=>handleClickCity({
                                 name:city?.name,
                                 coordinates:city.coordinates,
                             })} className="cursor-pointer hover:bg-gray-500 px-2 py-1">{city.name}</span>
