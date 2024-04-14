@@ -48,8 +48,8 @@ const CityTable: FC<Props> = () => {
                     <th className="border-2 border-black">Timezone</th>
                 </tr>
                 {
-                    geoData?.map((data: GeoDataProps) => (
-                        <tr>
+                    geoData?.map((data: GeoDataProps,index:number) => (
+                        <tr key={index}>
                             <td className="border-2 border-black">{data?.name}</td>
                             <td className="border-2 border-black">{data?.cou_name_en}</td>
                             <td className="border-2 border-black">{data?.timezone}</td>

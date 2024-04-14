@@ -19,8 +19,8 @@ const HourlyForecast: FC<HourlyForecastProps> = () => {
             </div>
             <div className="flex xl:flex-row flex-col gap-2 justify-between  w-full">
                 {
-                    currentHourlyForecastData?.map((forecast) => (
-                        <HourStatus forecast={forecast} />
+                    currentHourlyForecastData?.map((forecast,index:number) => (
+                        <HourStatus key={index} forecast={forecast} />
                     ))
                 }
             </div>
