@@ -3,12 +3,9 @@
 ## Getting Started
 Clone the repository
 ```bash
-npm install
+git@github.com:lalitpatidar-001/advance-weather-app.git
 ```
 
-```bash
-npm install
-```
 
 First install the dependencies 
 ```bash
