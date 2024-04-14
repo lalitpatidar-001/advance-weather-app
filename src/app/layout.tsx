@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import ReduxProvider from "@/redux/provider/ReduxProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </body>
+        <Toaster/>
       </ReduxProvider>
       <SpeedInsights/>
     </html>
